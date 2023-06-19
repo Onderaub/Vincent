@@ -1,1 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<head>
+  
+  <style>
+  
+    
+    body {
+      background-color: black;
+      color: rgb(40, 11, 11);
+      
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-size: 36px;
+      background-repeat: no-repeat;
+    }
 
+    @keyframes colorAnimation2 {
+  0% {
+    color: #ff0000; /* Couleur pastel 1 */
+  }
+  16.67% {
+    color: #f856a2; /* Couleur pastel 2 */
+  }
+  33.33% {
+    color: #9046ff; /* Couleur pastel 3 */
+  }
+  50% {
+    color: #28e0fc; /* Couleur pastel 4 */
+  }
+  66.67% {
+    color: #32ff51; /* Couleur pastel 5 */
+  }
+  83.33% {
+    color: #ffce1e; /* Couleur pastel 6 */
+  }
+  100% {
+    color: #f55050; /* Couleur pastel 1 */
+  }
+}
+@keyframes colorAnimation {
+  0% {
+    color: #ff9e9e; /* Couleur pastel 1 */
+  }
+  16.67% {
+    color: #e17dff; /* Couleur pastel 2 */
+  }
+  33.33% {
+    color: #65c1ff; /* Couleur pastel 3 */
+  }
+  50% {
+    color: #54ffad; /* Couleur pastel 4 */
+  }
+  66.67% {
+    color: #adff32; /* Couleur pastel 5 */
+  }
+  83.33% {
+    color: #ffb96e; /* Couleur pastel 6 */
+  }
+  100% {
+    color: #f55050; /* Couleur pastel 1 */
+  }
+}
+
+    .countdown-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+     
+    }
+    
+    .countdown-text {
+      font-size: 72px;
+    }
+    
+    .background-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .background-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .text-container {
+      position: absolute;
+      bottom: 200px;
+      font-size: 72px;
+      left: 0;
+      right: 0;
+      text-align: center; 
+      z-index: 1;
+      background: linear-gradient(to center, transparent 20%, black 100%);
+      padding: 20px;
+      border-radius: 50%;
+
+    }
+    
+    h1 {
+     
+      background: linear-gradient(to bottom, transparent 20%, black 100%);
+      display: inline-block;
+      font-size: 36px;
+      margin: 0;
+      padding: 0;
+    }
+   
+    .text-block {
+      display: inline-block;
+      background: linear-gradient(to bottom, transparent 20%, black 100%);
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+    }
+   
+
+
+    .barDown{
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    margin: auto;
+    gap: 10px;
+    align-items: center;
+   
+
+} 
+
+section{
+    width: 100%;
+    position: relative;
+    top:-20px;
+    float: Left;
+    display: none;
+    opacity:1.5;
+    animation-name: slide;
+    animation-duration: 2s; 
+    justify-content: center;
+    align-items: center ;
+}
+
+span{
+    position: relative;
+    top:20px;
+}
+
+div:hover section{
+    display: flex;
+}
+
+
+  button{
+    background: none;
+    border: none;
+    width: 40px;
+    font-size: 40px;
+  }
+@keyframes slide {
+    0%{opacity: 0;}
+    100%{opacity: 1.5;}
+    
+}
+  </style>
+</head>
+<body>
+  <div class="countdown-container">
+    <div class="countdown-text"></div>
+    <div id="countdown"></div>
+  </div>
+  
+  <div class="background-container">
+    <img class="background-image">
+    <div class="text-container">
+      <h1 class="h1">Terminale C34</h1>
+      <p>Douanes Fermées</p>
+      <p class="text-block"></p>
+    </div>
+  </div>
+
+
+  <section>
+    <span>
+        <a href="https://www.instagram.com/starisland.fr/"><img class="drop" src= "slideshow/logo_instagram.png" alt="logo"></a>
+        <a href="https://www.facebook.com/people/StarIslandfr/100083351536053/"><img class="drop" src= "slideshowlogo_facebook.png" alt="logo"></a>
+        <a href="https://www.tiktok.com/@star.island?lang=fr"><img class="drop" src= "slideshow/logo_tiktok.png" alt="logo"></a>
+    </span>
+</section>
+    <div class="custom-audio">
+<div class="play-button">
+  <button id="soundButton" onclick="toggleSound()"><audio autoplay loop>
+  <source src="sideshow/teasersong.wav" type="audio/wav">
+</audio>
+🔈</button>
+<section>
+    <span>
+        <a href="https://www.twitch.tv/"><img class="drop" src= "../slideshow/logo_" alt="logo"></a>
+        <a href="https://twitter.com/StarIslandfr"><img class="drop" src= "slideshow/upload/logo_twitter.png" alt="logo"></a>
+        <a href="https://discord.com/"><img class="drop" src= "slideshow/logo_discord.png" alt="logo"></a>
+    </span>
+   
+</section>
+  <script>
+    //////////////SON
+    const soundButton = ("soundButton")
+    var isSoundEnabled = true;
+    var tickSound = document.getElementById("tickSound");
+    function refreshCountdown(){
+    function toggleSound() {
+    isSoundEnabled = !isSoundEnabled;
+    var soundButton = document.getElementById("soundButton");
+    if (isSoundEnabled) {
+      tickSound.play();
+      soundButton.innerHTML = "🔈";
+    } else {
+      tickSound.pause();
+      soundButton.innerHTML = "🔇";
+    }
+  }}
+    // Code JavaScript pour le compte à rebours
+    // (Remplacez la date par le 1er juillet 2023)
+    const countdownDate = new Date("2023-07-01T00:00:00Z").getTime();
+    
+    const countdownElement = document.getElementById("countdown");
+    const textBlock = document.querySelector(".text-block");
+    const countdowntext = document.querySelector(".countdown-text");
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      countdownElement.innerHTML = days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
+      textBlock.style.fontFamily = "Arial Black, sans-serif";
+      textBlock.style.transition = "transform 5s ease-in-out, opacity 5s ease-in-out";
+      textBlock.style.transform = "translateZ(0)";
+      textBlock.style.opacity = "1";
+      
+// Pour faire disparaître le texte après un certain délai
+  setTimeout(function() {
+  textBlock.style.transform = "translateZ(200%)";
+  textBlock.style.opacity = "0";
+}, 4500); 
+      countdownElement.style.animation="colorAnimation2 20s infinite"
+      document.body.style.animation="colorAnimation 30s infinite";
+      countdowntext.style.animation = "colorAnimation 20s infinite";
+      textBlock.style.animation = "colorAnimation 60s infinite";
+      document.body.style.backgroundPosition = "left top";
+      document.body.style.transition = "background-image 5s ease-in-out"; 
+      if (window.innerWidth < 768) {
+     
+      document.body.style.backgroundImage = "url('sideshow/mobile1.png')";
+    if (seconds % 2=== 0) {
+        document.body.style.backgroundImage = "url('sideshow/mobile1.png')";
+        textBlock.textContent = "Découvrez nos opportunités";
+      } else if ( seconds % 2 !== 0) {
+        document.body.style.backgroundImage = "url('sideshow/mobile2.png')";
+        textBlock.textContent = "Pour des Vacances ou pour le Travail";
+      }
+  } else 
+      textBlock.style.fontSize = "42px";
+      document.body.style.backgroundSize = "cover";
+      if (seconds === 58) {
+        document.body.style.backgroundImage = "url('sideshow/teasera.png')";
+        textBlock.textContent = "Découvrez nos opportunités";
+      } else if (seconds === 50) {
+        document.body.style.backgroundImage = "url('sideshow/teaserb.png')";
+        textBlock.textContent = "Pour des Vacances ou pour le Travail";
+      } else if (seconds === 42) {
+        document.body.style.backgroundImage = "url('sideshow/teaserc.png')";
+        textBlock.textContent = "Rejoignez-nous";
+      } else if (seconds === 33) {
+        document.body.style.backgroundImage = "url('sideshow/teaserd.png')";
+        textBlock.textContent = "Et devenez qui vous souhaitez";
+      } else if (seconds === 27) {
+        document.body.style.backgroundImage = "url('sideshow/teasere.png')";
+        textBlock.textContent = "Evasions";
+      } else if (seconds === 21) {
+        document.body.style.backgroundImage = "url('sideshow/teaserf.png')";
+        textBlock.textContent = "Aventures";
+      } else if (seconds === 15) {
+        document.body.style.backgroundImage = "url('sideshow/teaserg.png')";
+        textBlock.textContent = "Scénarios";
+      } else if (seconds === 9) {
+        document.body.style.backgroundImage = "url('sideshow/teaserh.png')";
+        textBlock.textContent = "Bienvenue";
+      } else if (seconds === 3) {
+        document.body.style.backgroundImage = "url('sideshow/teaseri.png')";
+        textBlock.textContent = "A star island";
+      }
+    }
+    
+    setInterval(updateCountdown, 1000);
+    
+  
+  </script>
+</body>
+</html>
